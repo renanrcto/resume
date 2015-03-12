@@ -1,0 +1,364 @@
+<!doctype html>
+<html>
+	<head>
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimal-ui">
+
+    <title>
+    {{#resume.basics}}
+      {{#if today}}
+        {{name}} - {{label}} - {{today}}
+      {{else}}
+        {{name}} - {{label}}
+      {{/if}}
+    {{/resume.basics}}
+    </title>
+
+    <style>
+    {{{css}}}
+    </style>
+	</head>
+	<body>
+	
+	{{#resume.basics}}
+    <div id="header">
+      <div id="header-content">
+        {{#if picture}}
+        <div class="photo">
+          <img class="avatar" src="{{picture}}" alt="avatar" style="width:150px;height:150px"/>
+        </div>
+        {{/if}}
+        <div class="header-title">  
+          <h1 id="header-title">{{name}}</h1>
+          {{#if label}}
+          <h2 id="header-subtitle">{{label}}</h2>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+
+	<div id="content" class="container">
+	<section id="basics">
+		<div class="contact">
+		<h2 class="underlined">Resumo</h2>
+		{{#if website}}
+		<div class="website">
+			<strong>Website</strong>
+			{{website}}
+		</div>
+		{{/if}}
+		{{#if email}}
+		<div class="email">
+			<strong>Email:</strong>
+			{{email}}
+		</div>
+		{{/if}}
+		{{#if phone}}
+		<div class="phone">
+			<strong>Fone:</strong>
+			{{phone}}
+		</div>
+		{{/if}}
+		</div>
+		{{#if summary}}
+		<div class="summary">
+			<p>{{summary}}</p>
+		</div>
+		{{/if}}
+		{{#if profiles.length}}
+		<section id="profiles">
+			{{#each profiles}}
+			<div class="item">
+				{{#if network}}
+				<strong class="network">
+					{{network}}
+				</strong>
+				{{/if}}
+				{{#if url}}
+					<a href="{{url}}">
+					{{#if username}}
+						{{username}}
+					{{else}}
+						{{url}}
+					{{/if}}
+					</a>
+				{{/if}}
+			</div>
+			{{/each}}
+		</section>
+		{{/if}}
+	</section>
+	{{/resume.basics}}
+
+	{{#if resume.work.length}}
+	<section id="work">
+		<h2 class="underlined">Trabalho</h2>
+		{{#each resume.work}}
+		<div class="item">
+			{{#if company}}
+      <section id="{{company}}">
+        <h3 class="work_name" >
+          {{company}}
+        <div class="work_date">
+          {{#if startDateReadable}}
+          <span class="startDate">
+            {{startDateReadable}} - 
+          </span>
+          {{/if}}
+          {{#if endDateReadable}}
+          <span class="endDate">
+            {{endDateReadable}}
+          </span>
+          {{/if}}
+        </div>
+        </h3>
+      </section>
+			{{/if}}
+			
+			{{#if website}}
+			<div class="work_website">
+				<a href="{{website}}">{{website}}</a>
+			</div>
+			{{/if}}
+
+			{{#if position}}
+			<div class="work_position">
+				{{position}}
+			</div>
+			{{/if}}
+
+			{{#if summary}}
+			<div class="summary">
+				<p>{{summary}}</p>
+			</div>
+			{{/if}}
+
+			{{#if highlights.length}}
+			<ul class="highlights">
+				{{#each highlights}}
+        <li>{{{.}}}</li>
+				{{/each}}
+			</ul>
+			{{/if}}
+		</div>
+		{{/each}}
+	</section>
+	{{/if}}
+
+	{{#if resume.volunteer.length}}
+	<section id="projects">
+		<h2 class="underlined">Projects</h2>
+		{{#each resume.volunteer}}
+		<div class="item">
+			{{#if organization}}
+      <section id="{{organization}}">
+        <h3 class="company">
+          {{organization}}
+        <div class="work_date">
+          {{#if startDateReadable}}
+          <span class="startDate">
+            {{startDateReadable}} - 
+          </span>
+          {{/if}}
+          {{#if endDateReadable}}
+          <span class="endDate">
+            {{endDateReadable}}
+          </span>
+          {{/if}}
+        </div>
+        </h3>
+      </section>
+			{{/if}}
+			
+			{{#if website}}
+			<div class="work_website">
+				<a href="{{website}}">{{website}}</a>
+			</div>
+			{{/if}}
+
+			{{#if position}}
+			<div class="work_position">
+				{{position}}
+			</div>
+			{{/if}}
+
+			{{#if summary}}
+			<div class="summary">
+				<p>{{summary}}</p>
+			</div>
+			{{/if}}
+
+			{{#if highlights.length}}
+			<ul class="highlights">
+				{{#each highlights}}
+        <li>{{{.}}}</li>
+				{{/each}}
+			</ul>
+			{{/if}}
+		</div>
+		{{/each}}
+	</section>
+	{{/if}}
+	
+	{{#if resume.education.length}}
+	<section id="education">
+		<h2 class="underlined">Formação</h2>
+		{{#each resume.education}}
+		<div class="item">
+			{{#if institution}}
+      <section id="{{institution}}">
+        <div class="study_name">
+          <h3> {{institution}} 
+            <div class="study_date">
+              {{#if startDateReadable}}
+              <span class="startDate">
+                {{startDateReadable}} -
+              </span>
+              {{/if}}
+              {{#if endDateReadable}}
+              <span class="endDate">
+                {{endDateReadable}}
+              </span>
+              {{/if}}
+            </div>
+          </h3>
+        </div>
+      </section>
+			{{/if}}
+
+			{{#if area}}
+      <div class="study_area">
+        {{area}} 
+      </div>
+			{{/if}}
+
+			{{#if courses.length}}
+      <p>
+        {{#if studyType}}
+        <strong> {{studyType}}: </strong>
+        {{else}}
+        <strong> Courses: </strong>
+        {{/if}}
+        {{#commaList courses}}
+          {{.}}
+        {{/commaList}}
+        </p>
+			</ul>
+			{{/if}}
+
+			{{#if dissertation}}
+			<div class="dissertation">
+				<span>Dissertation: </span>{{dissertation}}
+			</div>
+			{{/if}}
+		</div>
+		{{/each}}
+	</section>
+	{{/if}}
+	
+	{{#if resume.skills.length}}
+	<section id="skills">
+		<h2 class="underlined">Skills</h2>
+		{{#each resume.skills}}
+		<div class="skill">
+			{{#if name}}
+			<div class="name">
+        <strong> {{name}} </strong>
+			</div>
+			{{/if}}
+			{{#if level}}
+			<div class="level">
+				<em>{{level}}</em>
+			</div>
+			{{/if}}
+			{{#if keywords.length}}
+			<ul class="keywords">
+				{{#each keywords}}
+        <li>{{{.}}}</li>
+				{{/each}}
+			</ul>
+			{{/if}}
+		</div>
+		{{/each}}
+	</section>
+	{{/if}}
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script>
+    var highestBox = 0;
+    $('.skill').each(function(){
+
+    if($(this).height() > highestBox)
+      highestBox = $(this).height();
+    })
+
+    $('.skill').each(function(){
+      $(this).height(highestBox);
+    })
+  </script>
+
+	{{#if resume.languages.length}}
+	<section id="languages">
+		<h2 class="underlined">Idiomas</h2>
+		{{#each resume.languages}}
+		<div class="item">
+			{{#if language}}
+			<div class="language">
+				<strong>{{language}}</strong>
+			</div>
+			{{/if}}
+			{{#if fluency}}
+			<div class="level">
+				<em>{{fluency}}</em>
+			</div>
+			{{/if}}
+		</div>
+		{{/each}}
+	</section>
+	{{/if}}
+
+	{{#if resume.interests.length}}
+	<section id="interests">
+		<h2 class="underlined">Interesses</h2>
+		{{#each resume.interests}}
+		<div class="item">
+			{{#if name}}
+			<div class="name">
+			<strong> {{name}} </strong>
+			</div>
+			{{/if}}
+			{{#if keywords.length}}
+			<ul class="keywords">
+				{{#each keywords}}
+        <li>{{{.}}}</li>
+				{{/each}}
+			</ul>
+			{{/if}}
+		</div>
+		{{/each}}
+	</section>
+	{{/if}}
+	
+	{{#if resume.references.length}}
+	<section id="references">
+		<h2 class="underlined">References</h2>
+		{{#each resume.references}}
+		<div class="item">
+			{{#if reference}}
+			<blockquote class="reference">
+				{{reference}}
+			</blockquote>
+			{{/if}}
+			{{#if name}}
+			<div class="name">
+				— {{name}}
+			</div>
+			{{/if}}
+		</div>
+		{{/each}}
+	</section>
+	{{/if}}
+	
+	</div>
+	</body>
+</html>
